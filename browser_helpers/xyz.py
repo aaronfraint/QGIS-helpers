@@ -1,5 +1,5 @@
 """
-Summary of ``add_xyz.py``
+Summary of ``xyz.py``
 -------------------------
 
 Use the sources defined below to add entries under XYZ within the QGIS Browser

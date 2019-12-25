@@ -1,5 +1,5 @@
 """
-Summary of ``update_postgis.py``
+Summary of ``postgis.py``
 --------------------------------
 
 Use the database connections defined in postGIS_tools.get_postGIS_config()
@@ -13,7 +13,7 @@ from qgis.utils import iface
 import postGIS_tools
 
 
-def remove_all_connections() -> None:
+def remove_postgis_connections() -> None:
     """ Remove all entries under PostGIS in the Browser """
     qs = QSettings()
 
@@ -24,7 +24,7 @@ def remove_all_connections() -> None:
     iface.reloadConnections()
 
 
-def sync_postgis_config(
+def add_postgis_connections(
     dbs_to_ignore: list = ["defaultdb", "_dodb"],
     remove_existing: bool = True,
 ) -> None:
@@ -39,7 +39,7 @@ def sync_postgis_config(
     """
 
     if remove_existing:
-        remove_all_connections()
+        remove_postgis_connections()
 
     # Read the user's config.txt
     config, super_config = postGIS_tools.get_postGIS_config()
