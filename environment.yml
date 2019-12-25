@@ -1,0 +1,13 @@
+name: QGIS-helpers
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7*
+  - pyproj
+  - geopandas
+  - psycopg2
+  - geoalchemy2
+  - qgis
+  - pip
+  - pip:
+      - git+https://github.com/aaronfraint/postGIS-tools.git
