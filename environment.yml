@@ -8,6 +8,8 @@ dependencies:
   - psycopg2
   - geoalchemy2
   - qgis
+  - sphinx
+  - sphinx_rtd_theme
   - pip
   - pip:
       - git+https://github.com/aaronfraint/postGIS-tools.git
