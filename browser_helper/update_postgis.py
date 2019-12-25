@@ -7,6 +7,9 @@ to add DB connections under PostGIS within the QGIS Browser.
 
 """
 
+from qgis.PyQt.QtCore import QSettings
+from qgis.utils import iface
+
 import postGIS_tools
 
 

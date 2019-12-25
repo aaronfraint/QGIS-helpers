@@ -6,6 +6,9 @@ Use the sources defined below to add entries under XYZ within the QGIS Browser
 
 """
 
+from qgis.PyQt.QtCore import QSettings
+from qgis.utils import iface
+
 # format:
 # display name, authcfg, pw, referer, url, username, zmax, zmin
 
