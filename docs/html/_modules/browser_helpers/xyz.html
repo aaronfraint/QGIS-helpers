@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>browser_helpers.xyz &mdash; QGIS-helpers 0.0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> QGIS-helpers
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">QGIS-helpers</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>browser_helpers.xyz</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for browser_helpers.xyz</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Summary of ``xyz.py``</span>
+<span class="sd">-------------------------</span>
+
+<span class="sd">Use the sources defined below to add entries under XYZ within the QGIS Browser</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">qgis.PyQt.QtCore</span> <span class="kn">import</span> <span class="n">QSettings</span>
+<span class="kn">from</span> <span class="nn">qgis.utils</span> <span class="kn">import</span> <span class="n">iface</span>
+
+<span class="c1"># format:</span>
+<span class="c1"># display name, authcfg, pw, referer, url, username, zmax, zmin</span>
+
+<span class="n">google_sources</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;Google Maps&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;https://mt1.google.com/vt/lyrs=m&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;19&quot;</span><span class="p">,</span><span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Google Satellite&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://mt1.google.com/vt/lyrs=s&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Google Terrain&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://mt1.google.com/vt/lyrs=t&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Google Terrain Hybrid&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://mt1.google.com/vt/lyrs=p&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Google Satellite Hybrid&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://mt1.google.com/vt/lyrs=y&amp;x=%7Bx%7D&amp;y=%7By%7D&amp;z=%7Bz%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">stamen_sources</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;Stamen Toner&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tile.stamen.com/toner/%7Bz%7D/%7Bx%7D/%7By%7D.png&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Stamen Toner Light&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tile.stamen.com/toner-lite/%7Bz%7D/%7Bx%7D/%7By%7D.png&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Stamen Watercolor&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tile.stamen.com/watercolor/%7Bz%7D/%7Bx%7D/%7By%7D.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;18&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Stamen Terrain&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tile.stamen.com/terrain/%7Bz%7D/%7Bx%7D/%7By%7D.png&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">esri_sources</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Boundaries Places&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Gray (dark)&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Gray (light)&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;16&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri National Geographic&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Ocean&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;10&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Satellite&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Standard&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;17&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Terrain&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;13&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Transportation&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Esri Topo World&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/%7Bz%7D/%7By%7D/%7Bx%7D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">osm_sources</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;OpenStreetMap Standard&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;OpenStreetMap contributors, CC-BY-SA&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;OpenStreetMap H.O.T.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;OpenStreetMap contributors, CC-BY-SA&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tile.openstreetmap.fr/hot/%7Bz%7D/%7Bx%7D/%7By%7D.png&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;OpenStreetMap Monochrome&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;OpenStreetMap contributors, CC-BY-SA&quot;</span><span class="p">,</span> <span class="s2">&quot;http://tiles.wmflabs.org/bw-mapnik/%7Bz%7D/%7Bx%7D/%7By%7D.png&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;19&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="n">SOURCES</span> <span class="o">=</span> <span class="n">google_sources</span> <span class="o">+</span> <span class="n">stamen_sources</span> <span class="o">+</span> <span class="n">esri_sources</span> <span class="o">+</span> <span class="n">osm_sources</span>
+
+
+<div class="viewcode-block" id="remove_xyz_connections"><a class="viewcode-back" href="../../browser_helpers.xyz.html#browser_helpers.xyz.remove_xyz_connections">[docs]</a><span class="k">def</span> <span class="nf">remove_xyz_connections</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Remove all XYZ entries in the Browser &quot;&quot;&quot;</span>
+    <span class="n">qs</span> <span class="o">=</span> <span class="n">QSettings</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">allKeys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="s2">&quot;qgis/connections-xyz/&quot;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+            <span class="n">qs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="n">iface</span><span class="o">.</span><span class="n">reloadConnections</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="add_xyz_connections"><a class="viewcode-back" href="../../browser_helpers.xyz.html#browser_helpers.xyz.add_xyz_connections">[docs]</a><span class="k">def</span> <span class="nf">add_xyz_connections</span><span class="p">(</span>
+        <span class="n">extra_sources</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">remove_existing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add XYZ connection for all default and user-specified sources</span>
+
+<span class="sd">    :param extra_sources: user-provided list to extend the stock choices</span>
+<span class="sd">    :param remove_existing: if True, will clear out old connections before adding new ones</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">remove_existing</span><span class="p">:</span>
+        <span class="n">remove_xyz_connections</span><span class="p">()</span>
+
+    <span class="n">sources</span> <span class="o">=</span> <span class="n">SOURCES</span> <span class="o">+</span> <span class="n">extra_sources</span>
+
+    <span class="c1"># Add sources to browser</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+        <span class="n">connectionName</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/authcfg&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/password&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/referer&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/url&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/username&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/zmax&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/zmin&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+
+    <span class="n">iface</span><span class="o">.</span><span class="n">reloadConnections</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Aaron Fraint, AICP
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
