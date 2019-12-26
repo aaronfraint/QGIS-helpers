@@ -5,6 +5,15 @@ Summary of ``postgis.py``
 Use the database connections defined in postGIS_tools.get_postGIS_config()
 to add DB connections under PostGIS within the QGIS Browser.
 
+
+Examples
+--------
+
+Within QGIS, open the Python command prompt and type:
+
+    >>> import browser_helpers as bh
+    >>> bh.add_postgis_connections()
+
 """
 
 from qgis.PyQt.QtCore import QSettings
@@ -25,7 +34,7 @@ def remove_postgis_connections() -> None:
 
 
 def add_postgis_connections(
-    dbs_to_ignore: list = ["defaultdb", "_dodb"],
+    dbs_to_ignore: list = ["postgres", "defaultdb", "_dodb"],
     remove_existing: bool = True,
 ) -> None:
     """
