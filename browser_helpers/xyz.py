@@ -2,7 +2,15 @@
 Summary of ``xyz.py``
 -------------------------
 
-Use the sources defined below to add entries under XYZ within the QGIS Browser
+Use the sources defined below to add entries under XYZ within the QGIS Browser.
+
+Examples
+--------
+
+Within QGIS, open the Python command prompt and type:
+
+    >>> import browser_helpers as bh
+    >>> bh.add_xyz_connections()
 
 """
 
@@ -78,13 +86,14 @@ def add_xyz_connections(
 
     # Add sources to browser
     for source in sources:
+        value_prefix = f"qgis/connections-xyz/{connectionName}""
         connectionName = source[0]
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/authcfg", source[1])
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/password", source[2])
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/referer", source[3])
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/url", source[4])
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/username", source[5])
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/zmax", source[6])
-        QSettings().setValue(f"qgis/connections-xyz/{connectionName}/zmin", source[7])
+        QSettings().setValue(f"{value_prefix}/authcfg", source[1])
+        QSettings().setValue(f"{value_prefix}/password", source[2])
+        QSettings().setValue(f"{value_prefix}/referer", source[3])
+        QSettings().setValue(f"{value_prefix}/url", source[4])
+        QSettings().setValue(f"{value_prefix}/username", source[5])
+        QSettings().setValue(f"{value_prefix}/zmax", source[6])
+        QSettings().setValue(f"{value_prefix}/zmin", source[7])
 
     iface.reloadConnections()
