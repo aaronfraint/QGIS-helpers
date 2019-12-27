@@ -75,6 +75,10 @@ def add_xyz_connections(
     """
     Add XYZ connection for all default and user-specified sources
 
+    The format for custom sources is:
+        - ``[display name, authcfg, pw, referer, url, username, zmax, zmin]``
+
+
     :param extra_sources: user-provided list to extend the stock choices
     :param remove_existing: if True, will clear out old connections before adding new ones
     """

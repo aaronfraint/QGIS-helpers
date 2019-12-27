@@ -2,7 +2,7 @@
 Summary of ``postgis.py``
 --------------------------------
 
-Use the database connections defined in postGIS_tools.get_postGIS_config()
+Use the database connections defined in ``postGIS_tools.get_postGIS_config()``
 to add DB connections under PostGIS within the QGIS Browser.
 
 
