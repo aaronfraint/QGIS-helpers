@@ -145,7 +145,15 @@
 <span class="sd">Summary of ``xyz.py``</span>
 <span class="sd">-------------------------</span>
 
-<span class="sd">Use the sources defined below to add entries under XYZ within the QGIS Browser</span>
+<span class="sd">Use the sources defined below to add entries under XYZ within the QGIS Browser.</span>
+
+<span class="sd">Examples</span>
+<span class="sd">--------</span>
+
+<span class="sd">Within QGIS, open the Python command prompt and type:</span>
+
+<span class="sd">    &gt;&gt;&gt; import browser_helpers as bh</span>
+<span class="sd">    &gt;&gt;&gt; bh.add_xyz_connections()</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -221,14 +229,15 @@
 
     <span class="c1"># Add sources to browser</span>
     <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+        <span class="n">value_prefix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">&quot;</span>
         <span class="n">connectionName</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/authcfg&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/password&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/referer&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/url&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/username&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/zmax&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
-        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qgis/connections-xyz/</span><span class="si">{connectionName}</span><span class="s2">/zmin&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/authcfg&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/password&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/referer&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/url&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/username&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/zmax&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span>
+        <span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{value_prefix}</span><span class="s2">/zmin&quot;</span><span class="p">,</span> <span class="n">source</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span>
 
     <span class="n">iface</span><span class="o">.</span><span class="n">reloadConnections</span><span class="p">()</span></div>
 </pre></div>
