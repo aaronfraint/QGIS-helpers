@@ -90,8 +90,8 @@ def add_xyz_connections(
 
     # Add sources to browser
     for source in sources:
-        value_prefix = f"qgis/connections-xyz/{connectionName}"
         connectionName = source[0]
+        value_prefix = f"qgis/connections-xyz/{connectionName}"
         QSettings().setValue(f"{value_prefix}/authcfg", source[1])
         QSettings().setValue(f"{value_prefix}/password", source[2])
         QSettings().setValue(f"{value_prefix}/referer", source[3])
