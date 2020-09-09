@@ -19,7 +19,7 @@ Within QGIS, open the Python command prompt and type:
 from qgis.PyQt.QtCore import QSettings
 from qgis.utils import iface
 
-import postGIS_tools
+import postgis_helpers as pGIS
 
 
 def remove_postgis_connections() -> None:
@@ -51,16 +51,18 @@ def add_postgis_connections(
         remove_postgis_connections()
 
     # Read the user's config.txt
-    config, super_config = postGIS_tools.get_postGIS_config()
+    # config, super_config = postGIS_tools.get_postGIS_config()
+    config = pGIS.configurations()
 
     # Iterate over each host defined in the file
     for host in config:
 
         this_config = config[host]
+        root_db = this_config["super_db"]
 
         # Get a list of all databases on the host host cluster
-        super_uri = postGIS_tools.make_uri(**super_config[host])
-        db_list = postGIS_tools.get_database_list(super_uri, debug=False)
+        db = pGIS.PostgreSQL(root_db, **this_config)
+        db_list = db.all_databases_on_cluster_as_list()
 
         for db in db_list:
 
@@ -73,8 +75,8 @@ def add_postgis_connections(
                     "database": db,
                     "host": this_config["host"],
                     "port": this_config["port"],
-                    "username": this_config["username"],
-                    "password": this_config["password"],
+                    "username": this_config["un"],
+                    "password": this_config["pw"],
                     "projectsInDatabase": "true",
                     "savePassword": "true",
                     "saveUsername": "true"
